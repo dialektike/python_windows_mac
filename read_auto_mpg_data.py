@@ -4,6 +4,11 @@ temp_url = "https://raw.githubusercontent.com/plotly/datasets/master/auto-mpg.cs
 
 
 def load_data():
-    temp = pd.read_csv(temp_url)
-    print(temp.head())
+    try:
+        temp = pd.read_csv(temp_url)
+    except:
+        file_name = "data/mpg_data.json"
+        print(f"'{file_name}'를 읽습니다.")
+        temp = pd.read_json(file_name, orient="records")
+        print(temp.head())
     return temp
